@@ -29,7 +29,7 @@ animation.setAnimationListener(new Animation.AnimationListener() {
 
     @Override
     public void onAnimationEnd(Animation animation) {
-        Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+        Intent intent = new Intent(SplashActivity.this, AdActivity.class);
         startActivity(intent);
         finish();
     }
