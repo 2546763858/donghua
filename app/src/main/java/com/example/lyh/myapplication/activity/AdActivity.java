@@ -42,7 +42,7 @@ public class AdActivity extends AppCompatActivity {
         }){
             @Override
             public void run() {
-                /*int i;*/
+
                 super.run();
                 for (int i=5;i>=0;i--) {
                     if (isStope){

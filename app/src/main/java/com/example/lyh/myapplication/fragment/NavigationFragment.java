@@ -13,42 +13,60 @@ import android.widget.ImageView;
 
 import com.example.lyh.myapplication.R;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.Unbinder;
+
 public class NavigationFragment extends Fragment {
-    private ImageView iv_home;
-    private ImageView iv_categor;
-    private ImageView iv_cart;
-    private ImageView iv_personal;
+
+    Unbinder unbinder;
+
+    @BindView(R.id.iv_home)
+    ImageView iv_home;
+
+    @BindView(R.id.iv_category)
+    ImageView iv_category;
+
+    @BindView(R.id.iv_cart)
+    ImageView iv_cart;
+
+    @BindView(R.id.iv_personal)
+    ImageView iv_personal;
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_navigation, container, false);
+
+        unbinder = ButterKnife.bind(this, view);
         initView(view);
+
         return view;
     }
 
     private void initView(View view) {
-        iv_home = view.findViewById(R.id.iv_home);
-        iv_categor = view.findViewById(R.id.iv_categor);
-        iv_cart = view.findViewById(R.id.iv_cart);
-        iv_personal = view.findViewById(R.id.iv_personal);
+
         resetImageResource(iv_home);
         showFragment(iv_home);
+
+
         iv_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showFragment(iv_home);
-                resetImageResource(iv_home);
 
+                showFragment(iv_home);
+
+                resetImageResource(iv_home);
 
             }
         });
-        iv_categor.setOnClickListener(new View.OnClickListener() {
+        iv_category.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showFragment(iv_categor);
-                resetImageResource(iv_categor);
-
+                resetImageResource(iv_category);
+                showFragment(iv_category);
             }
         });
         iv_cart.setOnClickListener(new View.OnClickListener() {
@@ -67,76 +85,101 @@ public class NavigationFragment extends Fragment {
         });
     }
 
-
     private HomeFragment homeFragment;
+    private CatgorFragment fenLeiFragment;
     private CartFragment cartFragment;
-    private CatgorFragment catgorFragment;
-    private PersonalFragment personalFragment;
+    private MeFragment meFragment;
 
     private void showFragment(ImageView icon) {
         FragmentManager manager = getFragmentManager();
+
         FragmentTransaction transaction = manager.beginTransaction();
 
         if (homeFragment != null) {
             transaction.hide(homeFragment);
         }
+        if (fenLeiFragment != null) {
+            transaction.hide(fenLeiFragment);
+        }
         if (cartFragment != null) {
             transaction.hide(cartFragment);
         }
-        if (catgorFragment != null) {
-            transaction.hide(catgorFragment);
+        if (meFragment != null) {
+            transaction.hide(meFragment);
         }
-        if (personalFragment != null) {
-            transaction.hide(personalFragment);
-        }
-        if (icon.getId()==R.id.iv_home){
-           if (homeFragment==null){
-               homeFragment=new HomeFragment();
-               transaction.add(R.id.ta_tag,homeFragment);
-           }else {
-               transaction.show(homeFragment);
-           }
-        }else if (icon.getId()==R.id.iv_categor){
-            if (catgorFragment==null){
-                catgorFragment=new CatgorFragment();
-                transaction.add(R.id.ta_tag,catgorFragment);
-            }else {
-                transaction.show(catgorFragment);
+
+        if (icon.getId() == R.id.iv_home) {
+            if (homeFragment == null) {
+                homeFragment = new HomeFragment();
+                transaction.add(R.id.fl_tag, homeFragment);
+            } else {
+                transaction.show(homeFragment);
             }
-        }else if (icon.getId()==R.id.iv_cart){
-            if (cartFragment==null){
-                cartFragment=new CartFragment();
-                transaction.add(R.id.ta_tag,cartFragment);
-            }else {
+
+        } else if (icon.getId() == R.id.iv_category) {
+            if (fenLeiFragment == null) {
+                fenLeiFragment = new CatgorFragment();
+                transaction.add(R.id.fl_tag, fenLeiFragment);
+            } else {
+                transaction.show(fenLeiFragment);
+            }
+        } else if (icon.getId() == R.id.iv_cart) {
+            if (cartFragment == null) {
+                cartFragment = new CartFragment();
+                transaction.add(R.id.fl_tag, cartFragment);
+            } else {
                 transaction.show(cartFragment);
             }
-        }else if (icon.getId()==R.id.iv_personal){
-            if (personalFragment==null){
-                personalFragment=new PersonalFragment();
-                transaction.add(R.id.ta_tag,personalFragment);
-            }else {
-                transaction.show(personalFragment);
+        } else if (icon.getId() == R.id.iv_personal) {
+            if (meFragment == null) {
+                meFragment = new MeFragment();
+                transaction.add(R.id.fl_tag, meFragment);
+            } else {
+                transaction.show(meFragment);
             }
-
         }
-        transaction.commit();
 
+
+        transaction.commit();
     }
 
     private void resetImageResource(View icon) {
+
         iv_home.setImageResource(R.mipmap.tab_item_home_normal);
+        iv_category.setImageResource(R.mipmap.tab_item_category_normal);
         iv_cart.setImageResource(R.mipmap.tab_item_cart_normal);
-        iv_categor.setImageResource(R.mipmap.tab_item_category_normal);
         iv_personal.setImageResource(R.mipmap.tab_item_personal_normal);
+
         if (icon.getId() == R.id.iv_home) {
             iv_home.setImageResource(R.mipmap.tab_item_home_focus);
-        } else if (icon.getId() == R.id.iv_categor) {
-            iv_categor.setImageResource(R.mipmap.tab_item_category_focus);
+        } else if (icon.getId() == R.id.iv_category) {
+            iv_category.setImageResource(R.mipmap.tab_item_category_focus);
         } else if (icon.getId() == R.id.iv_cart) {
             iv_cart.setImageResource(R.mipmap.tab_item_cart_focus);
         } else if (icon.getId() == R.id.iv_personal) {
             iv_personal.setImageResource(R.mipmap.tab_item_personal_focus);
         }
 
-    }}
+    }
 
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
+
+    @OnClick({R.id.iv_home, R.id.iv_category, R.id.iv_cart, R.id.iv_personal})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.iv_home:
+                break;
+            case R.id.iv_category:
+                break;
+            case R.id.iv_cart:
+                break;
+            case R.id.iv_personal:
+                break;
+        }
+    }
+}

@@ -62,12 +62,12 @@ public class LoginActivity extends AppCompatActivity {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-                        //
+
                     }
 
                     @Override
                     public void onResponse(String response, int id) {
-                        //JSON  主线程
+
                         Gson gson = new Gson();
                         LoginResponse response2 = gson.fromJson(response, LoginResponse.class);
                         if(response2.getStatus()==0){

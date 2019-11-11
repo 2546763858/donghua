@@ -3,10 +3,12 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 <FrameLayout
-    android:id="@+id/ta_tag"
+    android:id="@+id/fl_tag"
     android:layout_width="match_parent"
     android:layout_height="0dp"
-    android:layout_weight="1"></FrameLayout>
+    android:layout_weight="1">
+
+</FrameLayout>
     <LinearLayout
 
         android:background="#333333"
@@ -23,7 +25,7 @@
             android:src="@mipmap/tab_item_home_normal" />
 
         <ImageView
-            android:id="@+id/iv_categor"
+            android:id="@+id/iv_category"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"

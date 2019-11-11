@@ -15,38 +15,59 @@ import android.webkit.WebViewClient;
 
 import com.example.lyh.myapplication.R;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class HomeFragment extends Fragment {
-    private WebView  WebView ;
-    private SwipeRefreshLayout refresh;
+
+    @BindView(R.id.webview)
+    WebView webView;
+
+    @BindView(R.id.refresh)
+    SwipeRefreshLayout refresh;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        WebView  = view.findViewById(R.id.webview);
-        refresh=view.findViewById(R.id.refresh);
+        ButterKnife.bind(this,view);
+
         initView();
         return view;
     }
 
-    private void initView(){
+    String url="http://10.10.16.78:8088/MobileShop/MobileshopIndex.html";
+
+    private void initView() {
         refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 refresh.setRefreshing(false);
-                WebView.loadUrl("https://www.huawei.com/cn/");
+                webView.loadUrl(url);
             }
         });
-        WebView.getSettings().setSupportZoom(true);
-        WebView.getSettings().setJavaScriptEnabled(true);
-     WebView.setWebViewClient(new WebViewClient(){
-         @Override
-         public boolean shouldOverrideUrlLoading(WebView view, String url) {
-             view.loadUrl(url);
-             return true;
-         }
 
 
-     });
-       WebView.loadUrl("https://www.huawei.com/cn/");
+        webView.getSettings().setSupportZoom(true);
+        webView.getSettings().setJavaScriptEnabled(true);
+
+
+        webView.setWebViewClient(new WebViewClient(){
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return true;
+            }
+        });
+
+        webView.loadUrl(url);
+    }
+
+    class MyWebViewClient extends WebViewClient{
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            view.loadUrl(url);
+            return true;
+        }
     }
 }
