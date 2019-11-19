@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/fg"
-        android:name="com.example.lyh.myapplication.fragment.NavigationFragment"
+        android:name="com.example.lyh.myapplication.NavigationFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 </LinearLayout>

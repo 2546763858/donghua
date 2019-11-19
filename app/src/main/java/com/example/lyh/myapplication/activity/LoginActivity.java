@@ -1,33 +1,22 @@
 package com.example.lyh.myapplication.activity;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.lyh.myapplication.R;
 import com.example.lyh.myapplication.bean.LoginResponse;
-import com.example.lyh.myapplication.fragment.SpTools;
+import com.example.lyh.myapplication.SpTools;
 import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
-
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.FormBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -51,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         final String username = et_username.getText().toString();
         final String pwd = et_pwd.getText().toString();
 
-        String url="http://10.10.16.78:8088/MobileShop/member/login2";
+        String url="http://10.10.16.37:8088/MobileShop/member/login2";
 
         OkHttpUtils
                 .post()

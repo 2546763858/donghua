@@ -36,7 +36,7 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
-    String url="http://10.10.16.78:8088/MobileShop/MobileshopIndex.html";
+    String url="http://10.10.16.37:8088/MobileShop/MobileshopIndex.html";
 
     private void initView() {
         refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

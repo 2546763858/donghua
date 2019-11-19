@@ -1,4 +1,4 @@
-package com.example.lyh.myapplication.fragment;
+package com.example.lyh.myapplication;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,6 +12,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.lyh.myapplication.R;
+import com.example.lyh.myapplication.fragment.CartFragment;
+import com.example.lyh.myapplication.fragment.CatgorFragment;
+import com.example.lyh.myapplication.fragment.HomeFragment;
+import com.example.lyh.myapplication.fragment.MeFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
